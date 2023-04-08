@@ -2,15 +2,13 @@ from nbformat import write
 import streamlit as st
 import pandas as pd
 import numpy as np
-import pandas_profiling
+import ydata_profiling
 from streamlit_pandas_profiling import st_profile_report
-from pandas_profiling import ProfileReport
+from ydata_profiling import ProfileReport
 
 
-st.write("""
-# Data Profiling App
-**This app Explore the Data before modeling**
-""")
+st.title("Data Profiling App")
+st.subheader("This app will help you to do Data Exploration")
 
 st.sidebar.header('User Input Features')
 
@@ -21,13 +19,9 @@ if uploaded_file is not None:
     st.markdown('---')
     input_df = pd.read_excel(uploaded_file, engine="openpyxl")
     
-    profile = ProfileReport(input_df,
+    profile = ProfileReport(input_df, title="New Data for profiling")
 
-                       title="New Data for profiling",
-
-    )
-
-    st.title("Detailed Report of the Data Used")
+    st.subheader("Detailed Report of the Data Used")
 
     st.write(input_df)
 
